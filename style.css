@@ -9,7 +9,6 @@ body {
    background-color: var(--bg-color);
    color: var(--font-color);
    font-family: "Ubuntu", sans-serif;
-   height: 100vh;
 }
 
 main {
@@ -113,16 +112,10 @@ input {
    width: 8rem;
 }
 
-.flex {
+header, section#result-div {
    display: flex;
-}
-
-.align-center {
-   align-items: center;
-}
-
-.justify-between {
    justify-content: space-between;
+   align-items: center;
 }
 
 .error {
