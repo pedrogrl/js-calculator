@@ -69,6 +69,14 @@ input {
    width: 100%;
 }
 
+input#input {
+   transition: .3s;
+}
+
+input#input:hover {
+   transform: scale(1.05);
+}
+
 #keys {
    display: grid;
    grid-template-columns: 1fr 1fr 1fr 1fr;
