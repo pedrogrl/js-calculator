@@ -30,12 +30,13 @@ const allowedChars = [
    " ",
 ];
 
-input.addEventListener("keydown", (ev) => {
-   ev.preventDefault();
+body.addEventListener("keydown", (ev) => {
+   if (input === document.activeElement) {
+      return;
+   }
 
    if (allowedChars.includes(ev.key)) {
       input.value += ev.key;
-      // return
    } else if (ev.key === "Backspace") {
       input.value = input.value.slice(0, -1);
    } else if (ev.key === "Escape") {
@@ -45,9 +46,25 @@ input.addEventListener("keydown", (ev) => {
    }
 });
 
+// input.addEventListener("keydown", (ev) => {
+//    ev.preventDefault();
+
+//    if (allowedChars.includes(ev.key)) {
+//       input.value += ev.key;
+//       // return
+//    } else if (ev.key === "Backspace") {
+//       input.value = input.value.slice(0, -1);
+//    } else if (ev.key === "Escape") {
+//       input.value = "";
+//    } else if (ev.key === "Enter") {
+//       calculate();
+//    }
+// });
+
 const clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click", () => {
    input.value = "";
+   resultInput.value = "";
    input.focus();
 });
 
@@ -70,20 +87,28 @@ function calculate() {
          resultInput.value = result;
       } catch (error) {
          resultInput.value = "Not valid! Try again.";
-         resultInput.classList.add('error')
+         resultInput.classList.add("error");
          input.value = "";
          setTimeout(() => {
-            resultInput.classList.remove('error')
+            resultInput.classList.remove("error");
             resultInput.value = "";
          }, 1750);
       } finally {
          res = resultInput.value;
+         // input.value = ''
+         input.focus();
       }
    }
 }
 
 const copyToClipboard = document.querySelector("#result-div");
 copyToClipboard.addEventListener("click", (ev) => {
+   if (
+      resultInput.value === "Not valid! Try again." ||
+      resultInput.value === ""
+   ) {
+      return;
+   }
    navigator.clipboard.writeText(resultInput.value);
 
    const button = ev.currentTarget.children.copyToClipboard;

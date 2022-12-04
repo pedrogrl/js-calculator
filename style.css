@@ -3,6 +3,7 @@
    margin: 0;
    padding: 0;
    user-select: none;
+   outline: none;
 }
 
 body {
@@ -140,5 +141,5 @@ header, section#result-div {
    --border-color: #aaa;
    --font-color: #37474f;
    --primary-color: #222222;
-   --error-color: #202225;
+   --error-color: #c9c9c9;
 }
